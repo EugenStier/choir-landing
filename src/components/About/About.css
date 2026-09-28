@@ -1,0 +1,45 @@
+.about {
+  padding: 7rem 8vw;
+  background: #f8f4ec;
+  color: #17120f;
+}
+
+.about__container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.about__title {
+  margin: 0 0 3rem;
+
+  font-family: "Cormorant Garamond", serif;
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+}
+
+.about__image {
+  width: 100%;
+  margin-bottom: 3rem;
+  overflow: hidden;
+}
+
+.about__image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.about__text {
+  max-width: 52rem;
+  margin: 0 auto;
+}
+
+.about__text p {
+  margin: 0 0 1.5rem;
+
+  font-family: "Inter", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}

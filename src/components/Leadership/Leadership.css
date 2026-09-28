@@ -1,0 +1,95 @@
+.leadership {
+  padding: 6rem 6vw;
+  background: #f8f4ec;
+}
+
+.leadership__container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.leadership__title {
+  margin-bottom: 4rem;
+  text-align: center;
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  color: #17120f;
+}
+
+.leader-card {
+  display: flex;
+  gap: 4rem;
+  padding: 2rem;
+  margin-bottom: 5rem;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  align-items: center;
+}
+
+.leader-card__name {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #17120f;
+}
+
+.leader-card__role {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 1.1rem;
+  color: #8d7b65;
+  font-weight: 500;
+}
+
+.leader-card__text {
+  margin: 0;
+  line-height: 1.8;
+  color: #444;
+}
+
+.leader-card__image {
+  width: 320px;
+height: 420px;
+  overflow: hidden;
+  border-radius: 18px;
+  flex-shrink: 0;
+}
+
+.leader-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.leader-card__content {
+  flex: 1;
+}
+
+.leader-card--reverse {
+  flex-direction: row-reverse;
+}
+@media (max-width: 768px) {
+  .leader-card,
+  .leader-card--reverse {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .leader-card__image {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+
+  .leader-card__image img {
+    height: auto;
+  }
+
+  .leader-card__name {
+    font-size: 1.7rem;
+  }
+
+  .leader-card__text {
+    line-height: 1.6;
+  }
+}

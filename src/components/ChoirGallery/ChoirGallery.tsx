@@ -1,0 +1,170 @@
+import { useEffect, useState } from "react";
+import "./ChoirGallery.css";
+
+const images = [
+  "/images/gallery/gallery1.jpg",
+  "/images/gallery/gallery2.jpg",
+  "/images/gallery/gallery3.jpg",
+  "/images/gallery/gallery4.jpg",
+  "/images/gallery/gallery5.jpg",
+  "/images/gallery/gallery6.jpg",
+];
+
+type ChoirGalleryProps = {
+  title: string;
+  text: string;
+};
+
+export function ChoirGallery({ title, text }: ChoirGalleryProps) {
+  const carouselImages = [
+    images[images.length - 1],
+    ...images,
+    images[0],
+  ];
+
+  const [currentImage, setCurrentImage] = useState(1);
+  const [transitionEnabled, setTransitionEnabled] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const realCurrentImage =
+    (currentImage - 1 + images.length) % images.length;
+    const isMobile = window.innerWidth <= 900;
+
+  useEffect(() => {
+  const interval = window.setInterval(() => {
+    if (!isPaused) {
+      setTransitionEnabled(true);
+      setCurrentImage((current) => current + 1);
+    }
+  }, 4000);
+
+  return () => window.clearInterval(interval);
+}, [isPaused]);
+
+  const showPreviousImage = () => {
+    setTransitionEnabled(true);
+    setCurrentImage((current) => current - 1);
+  };
+
+  const showNextImage = () => {
+    setTransitionEnabled(true);
+    setCurrentImage((current) => current + 1);
+  };
+
+  const handleTransitionEnd = () => {
+    // Доехали до копии первой фотографии
+    if (currentImage === images.length + 1) {
+      setTransitionEnabled(false);
+      setCurrentImage(1);
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setTransitionEnabled(true);
+        });
+      });
+    }
+
+    // Доехали до копии последней фотографии
+    if (currentImage === 0) {
+      setTransitionEnabled(false);
+      setCurrentImage(images.length);
+
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          setTransitionEnabled(true);
+        });
+      });
+    }
+  };
+
+  const selectImage = (index: number) => {
+    setTransitionEnabled(true);
+    setCurrentImage(index + 1);
+  };
+
+  return (
+    <section className="choir-gallery" id="gallery">
+      <div className="choir-gallery__container">
+        <h2 className="choir-gallery__title">{title}</h2>
+
+        <p className="choir-gallery__text">{text}</p>
+
+        <div
+  className="choir-gallery__carousel"
+  onMouseEnter={() => setIsPaused(true)}
+  onMouseLeave={() => setIsPaused(false)}
+>
+          <button
+            type="button"
+            className="choir-gallery__button choir-gallery__button--left"
+            onClick={showPreviousImage}
+            aria-label="Предыдущая фотография"
+          >
+            ‹
+          </button>
+
+          <div className="choir-gallery__viewport">
+            <div
+              className="choir-gallery__track"
+              onTransitionEnd={handleTransitionEnd}
+              style={{
+  transform: isMobile
+  ? `translateX(-${currentImage * 100}%)`
+  : `translateX(calc(
+      15% - ${currentImage * 70}% - ${currentImage * 2}rem
+    ))`,
+  transition: transitionEnabled
+    ? "transform 0.8s ease"
+    : "none",
+}}
+            >
+              {carouselImages.map((image, index) => (
+                <div
+                  key={`${image}-${index}`}
+                  className={`choir-gallery__slide ${
+                    index === currentImage
+                      ? "choir-gallery__slide--active"
+                      : ""
+                  }`}
+                >
+                  <img
+                    src={image}
+                    alt={`Фото хора ${
+                      ((index - 1 + images.length) % images.length) + 1
+                    }`}
+                    className="choir-gallery__image"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            className="choir-gallery__button choir-gallery__button--right"
+            onClick={showNextImage}
+            aria-label="Следующая фотография"
+          >
+            ›
+          </button>
+        </div>
+
+        <div className="choir-gallery__dots">
+          {images.map((_, index) => (
+            <button
+              type="button"
+              key={index}
+              className={`choir-gallery__dot ${
+                index === realCurrentImage
+                  ? "choir-gallery__dot--active"
+                  : ""
+              }`}
+              onClick={() => selectImage(index)}
+              aria-label={`Показать фотографию ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
