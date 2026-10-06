@@ -28,7 +28,7 @@ export function Leadership({ text }: LeadershipProps) {
         <div className="leader-card">
   <div className="leader-card__image">
   <img
-    src="/images/leadership/prinz.jpg"
+    src={`${import.meta.env.BASE_URL}images/leadership/prinz.jpg`}
     alt="Prinz"
   />
 </div>
@@ -50,7 +50,7 @@ export function Leadership({ text }: LeadershipProps) {
   <div className="leader-card leader-card--reverse">
   <div className="leader-card__image">
     <img
-      src="/images/leadership/eurich.jpg"
+      src={`${import.meta.env.BASE_URL}images/leadership/eurich.jpg`}
       alt="Eurich"
     />
   </div>

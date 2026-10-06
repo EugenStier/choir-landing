@@ -15,7 +15,7 @@ export function About({ text }: AboutProps) {
 
         <div className="about__image">
           <img
-            src="/images/about/chor_o_nas.jpg"
+            src={`${import.meta.env.BASE_URL}images/about/chor_o_nas.jpg`}
             alt="Хор российских немцев"
           />
         </div>

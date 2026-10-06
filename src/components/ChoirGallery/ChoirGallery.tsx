@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import "./ChoirGallery.css";
 
 const images = [
-  "/images/gallery/gallery1.jpg",
-  "/images/gallery/gallery2.jpg",
-  "/images/gallery/gallery3.jpg",
-  "/images/gallery/gallery4.jpg",
-  "/images/gallery/gallery5.jpg",
-  "/images/gallery/gallery6.jpg",
+  `${import.meta.env.BASE_URL}images/gallery/gallery1.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery2.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery3.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery4.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery5.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery6.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery7.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery8.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery9.jpg`,
+  `${import.meta.env.BASE_URL}images/gallery/gallery10.jpg`,
 ];
 
 type ChoirGalleryProps = {
